@@ -35,7 +35,7 @@ const PaymentForm = ({ plan }) => {
 
   const navigate = useNavigate();
 
-  const buildPaymentForm = (hostedPaymentPageExternalId) => {
+  const buildPaymentForm = (hostedPaymentPageExternalId, CurrencyCode) => {
     const script = document.createElement("script");
     script.src =
       "https://cdn.aws.billingplatform.com/hosted-payments-ui@release/lib.js";
@@ -55,6 +55,7 @@ const PaymentForm = ({ plan }) => {
           environmentId: "379d372b-8406-4599-8f74-bc283342c5a5",
           billingProfileId: hostedPaymentPageExternalId,
           fullName: `${formData.firstName} ${formData.lastName}`,
+          currencyCode: CurrencyCode,
           state: formData.state,
           city: formData.city,
           address: formData.addr1,
@@ -125,7 +126,7 @@ const PaymentForm = ({ plan }) => {
       }
 
       if (!savedAccount.HostedPaymentPageExternalId) {
-        savedAccount.HostedPaymentPageExternalId = await createBillingProfile(
+        savedAccount = await createBillingProfile(
           savedAccount.Id,
           formData
         );
@@ -133,7 +134,7 @@ const PaymentForm = ({ plan }) => {
       // await createAccountProduct(savedAccount.Id, plan.id);
       setFormState({ status: "", message: "" });
       setStep(formSteps.PAYMENT_DETAILS);
-      buildPaymentForm(savedAccount.HostedPaymentPageExternalId);
+      buildPaymentForm(savedAccount.HostedPaymentPageExternalId, savedAccount.CurrencyCode);
     } catch (e) {
       console.log(e);
       setFormState({ status: "error", message: "API error" });

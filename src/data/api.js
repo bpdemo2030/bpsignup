@@ -81,10 +81,10 @@ export const createBillingProfile = async (AccountId, formData) => {
       headers: { sessionId }
     }).then(resp => resp.json());
     const savedBP = await fetch(
-      `${process.env.REACT_APP_BP_URL}/query?sql=SELECT bp.HostedPaymentPageExternalId FROM Billing_Profile bp WHERE bp.Id = ${bpResponse?.createResponse?.[0].Id}`,
+      `${process.env.REACT_APP_BP_URL}/query?sql=SELECT a.Id, bp.HostedPaymentPageExternalId, bp.CurrencyCode FROM Billing_Profile bp LEFT JOIN Account a ON a.Id = bp.AccountId WHERE bp.Id = ${bpResponse?.createResponse?.[0].Id}`,
       { headers: { sessionId } }
     ).then((resp) => resp.json());
-    return savedBP?.queryResponse[0].HostedPaymentPageExternalId;
+    return savedBP?.queryResponse[0];
   } catch (e) {
     return null;
   }
@@ -126,7 +126,7 @@ export const getAccountByName = async (name) => {
     //   await login();
     // }
     const accountResponse = await fetch(
-      `${process.env.REACT_APP_BP_URL}/query?sql=SELECT a.Id, bp.HostedPaymentPageExternalId FROM Account a LEFT JOIN Billing_Profile bp ON bp.AccountId = a.Id WHERE a.Name = '${name}'`,
+      `${process.env.REACT_APP_BP_URL}/query?sql=SELECT a.Id, bp.HostedPaymentPageExternalId, bp.CurrencyCode FROM Account a LEFT JOIN Billing_Profile bp ON bp.AccountId = a.Id WHERE a.Name = '${name}'`,
       { headers: { sessionId } }
     ).then((resp) => resp.json());
     return accountResponse?.queryResponse?.[0];
