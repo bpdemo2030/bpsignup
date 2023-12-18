@@ -14,12 +14,12 @@ const TopNavigation = (props) => {
         </div>
         <div className="flex">
           <img
-            src={`${process.env.PUBLIC_URL}/user-icon.png`}
+            src={`/user-icon.png`}
             alt="user icon"
           />
           <span>{props.username}</span>
           <img
-            src={`${process.env.PUBLIC_URL}/polygon-icon.png`}
+            src={`/polygon-icon.png`}
             alt="img"
             className="my-auto"
           />

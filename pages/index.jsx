@@ -1,17 +1,20 @@
+"use client";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Card from "../../components/Card/Card";
-import Footer from "../../components/Footer/Footer";
-import Loader from "../../components/Loader/Loader";
-import Navbar from "../../components/Navbar/Navbar";
-import { getProducts } from "../../data/api";
-import "./HomePage.css";
+import Link from "next/link";
+import Card from "../src/components/Card/Card";
+import Footer from "../src/components/Footer/Footer";
+import Loader from "../src/components/Loader/Loader";
+import Navbar from "../src/components/Navbar/Navbar";
+import { getHppSecurityToken, getProducts } from "../src/data/api";
+import "./index.css";
 
-const HomePage = () => {
+const HomePage = ({ token }) => {
   const [bpProducts, setBpProducts] = useState([]);
 
   useEffect(() => {
-    getProducts().then(setBpProducts);
+    getProducts().then(products => {
+      setBpProducts(products)
+    });
   }, []);
 
   return (
@@ -37,7 +40,7 @@ const HomePage = () => {
                     <div className="flex column text-center">
                       <div className="flex justify-center plan-logo">
                         <img
-                          src={`${process.env.PUBLIC_URL}/Plan-${
+                          src={`/Plan-${
                             index + 1
                           }.png`}
                           alt="plan"
@@ -50,7 +53,7 @@ const HomePage = () => {
                       </h2>
                       <span className="price-description">USD/MONTH</span>
                       {item.price ? (
-                        <Link to={`/register?planId=${item.id}`}>
+                        <Link href={`/register?planId=${item.id}`}>
                           <button
                             className={`btn ${
                               index % 2 === 0 ? "blue" : "green"
@@ -72,7 +75,7 @@ const HomePage = () => {
                         {item.description.map((desc) => (
                           <div key={desc} className="flex description">
                             <img
-                              src={`${process.env.PUBLIC_URL}/Check-icon.png`}
+                              src={`/Check-icon.png`}
                               className="check"
                               alt="check"
                             />
@@ -93,6 +96,16 @@ const HomePage = () => {
       {/* <div className="home-cloud-data-icon"></div> */}
     </div>
   );
+};
+
+export const getServerSideProps = async ()=> {
+  let token;
+  // token = await getHppSecurityToken();
+  return {
+    props: {
+      token: token || ""
+    }
+  }
 };
 
 export default HomePage;

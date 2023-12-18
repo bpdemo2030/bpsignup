@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../components/Navbar/Navbar";
-import Card from "../../components/Card/Card";
+import Navbar from "../../src/components/Navbar/Navbar";
+import Card from "../../src/components/Card/Card";
 import "./RegisterPage.css";
-import PaymentForm from "../../components/PaymentForm/PaymentForm";
-import { getProducts } from "../../data/api";
-import Footer from "../../components/Footer/Footer";
+import PaymentForm from "../../src/components/PaymentForm/PaymentForm";
+import { getHppSecurityToken, getProducts } from "../../src/data/api";
+import Footer from "../../src/components/Footer/Footer";
 
 const NEXT_PAYMENT_DIFF_DAYS = 30;
 const paymentDate = new Date();
@@ -27,7 +27,7 @@ const getSelectedPlan = (plans) => {
   return plans[0];
 };
 
-const RegisterPage = () => {
+const RegisterPage = ({token}) => {
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [allowForm, setAllowForm] = useState(false);
 
@@ -107,19 +107,19 @@ const RegisterPage = () => {
               <h3>Trusted by leading businesses</h3>
               <div className="list flex justify-between w-full">
                 <img
-                  src={`${process.env.PUBLIC_URL}/emburse-logo.png`}
+                  src={`/emburse-logo.png`}
                   alt="emburse-logo"
                 />
                 <img
-                  src={`${process.env.PUBLIC_URL}/go-cardless-logo.png`}
+                  src={`/go-cardless-logo.png`}
                   alt="go-cardless-logo"
                 />
                 <img
-                  src={`${process.env.PUBLIC_URL}/jpmc-logo.png`}
+                  src={`/jpmc-logo.png`}
                   alt="jpmc-logo"
                 />
                 <img
-                  src={`${process.env.PUBLIC_URL}/thunes-logo.png`}
+                  src={`/thunes-logo.png`}
                   alt="thunes-logo"
                 />
               </div>
@@ -135,7 +135,7 @@ const RegisterPage = () => {
           </div>
           <div className="w-full billing-form">
             <Card disabled={!allowForm}>
-              <PaymentForm plan={selectedPlan} />
+              <PaymentForm token={token} plan={selectedPlan} />
             </Card>
           </div>
         </div>
@@ -144,6 +144,13 @@ const RegisterPage = () => {
       {/* <div className="register-background"></div> */}
     </div>
   );
+};
+
+export const getServerSideProps = async () => {
+  const token = await getHppSecurityToken();
+  return {
+    props: {token: token || ""}
+  }
 };
 
 export default RegisterPage;

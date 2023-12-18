@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import { useRouter } from "next/navigation";
 import {
   getAccountByName,
   createAccount,
   createBillingProfile,
   createAccountProduct,
+  getHppSecurityToken
 } from "../../data/api";
 import Loader from "../Loader/Loader";
 import "./PaymentForm.css";
@@ -28,26 +29,29 @@ const formSteps = {
 
 let savedAccount;
 
-const PaymentForm = ({ plan }) => {
+const PaymentForm = ({ plan, token }) => {
   const [formData, setFormData] = useState({ ...defaultFormData });
   const [formState, setFormState] = useState({ status: "", message: "" });
   const [step, setStep] = useState(formSteps.BILLING_CONTACT);
 
-  const navigate = useNavigate();
+  const router = useRouter();
 
-  const buildPaymentForm = (hostedPaymentPageExternalId, CurrencyCode) => {
+  const buildPaymentForm = async (hostedPaymentPageExternalId, CurrencyCode) => {
     const script = document.createElement("script");
     script.src =
       "https://cdn.aws.billingplatform.com/hosted-payments-ui@release/lib.js";
     document.body.append(script);
+    const orgURL = "https://my.billingplatform.com/standard_demo";
+    
     script.onload = function () {
       window.HostedPayments.renderPaymentForm(
         {
           targetSelector: "#payment-form",
           // amount: Number(plan?.price),
+          securityToken: token,
           walletMode: true,
           apiUrl:
-            "https://my.billingplatform.com/standard_demo/hostedPayments/1.0",
+            `${orgURL}/hostedPayments/1.0`,
           paymentGateways: {
             creditCard: { gateway: "StaxPayments_CC" },
             directDebit: { gateway: "StaxPayments_DD" },
@@ -63,10 +67,10 @@ const PaymentForm = ({ plan }) => {
           email: formData.email,
         },
         {
-          successCapture: () => navigate("/portal"),
+          successCapture: () => router.push("/portal"),
           addPaymentMethod: () => {
             createAccountProduct(savedAccount?.Id, plan.id);
-            navigate("/portal");
+            router.push("/portal");
           },
         }
       );
@@ -136,7 +140,6 @@ const PaymentForm = ({ plan }) => {
       setStep(formSteps.PAYMENT_DETAILS);
       buildPaymentForm(savedAccount.HostedPaymentPageExternalId, savedAccount.CurrencyCode);
     } catch (e) {
-      console.log(e);
       setFormState({ status: "error", message: "API error" });
     }
   };

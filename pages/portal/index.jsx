@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Sidebar from "../../components/Sidebar/Sidebar";
-import TopNavigation from "../../components/TopNavigation/TopNavigation";
+import Link from "next/link";
+import Sidebar from "../../src/components/Sidebar/Sidebar";
+import TopNavigation from "../../src/components/TopNavigation/TopNavigation";
 import "./PortalPage.css";
 
 const PortalPage = () => {
@@ -36,7 +36,7 @@ const PortalPage = () => {
               </span>
             </div>
             <div className="flex justify-center w-full">
-              <Link to="/">
+              <Link href="/">
                 <button className="btn green">Manage Subscription</button>
               </Link>
             </div>
