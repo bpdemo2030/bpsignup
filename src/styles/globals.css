@@ -1,0 +1,159 @@
+@import 'variables.css';
+
+/* 1. Reset margins, paddings & box-sizing */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+}
+
+/* 2. Base font on the root */
+html {
+    font-family: var(--font-base);
+}
+
+/* 3. Allow full-height layouts */
+html,
+body,
+main,
+#__next {
+    height: 100%;
+}
+
+/* Layout Utilities */
+.flex            { display: flex; }
+.column          { flex-direction: column; }
+.justify-center  { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.flex-col        { flex-direction: column; }
+
+/* Text Utilities */
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+.text-blue   { color: var(--color-primary); }
+.text-black  { color: var(--color-black); }
+
+/* Spacing Utilities */
+.m-auto  { margin: auto; }
+.my-auto { margin-top: auto; margin-bottom: auto; }
+
+/* Button Base */
+.btn {
+    font-family: var(--font-base);
+    font-style: normal;
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-sm);
+    text-transform: uppercase;
+    color: var(--color-white);
+    border: none;
+    border-radius: 5px;
+    width: 109px;
+    height: 28px;
+    cursor: pointer;
+    margin: auto;
+}
+
+/* Button Variants */
+.btn.black { background-color: var(--color-black); }
+.btn.green { background-color: var(--color-success); }
+.btn.blue  { background-color: var(--color-info); }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/** {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    box-sizing: border-box;*/
+/*    font-family: 'Roboto', sans-serif!important;*/
+/*}*/
+
+/*.flex {*/
+/*    display: flex;*/
+/*}*/
+
+/*.column {*/
+/*    flex-direction: column;*/
+/*}*/
+
+/*.text-blue {*/
+/*    color: #00b1eb;*/
+/*}*/
+
+/*.text-black {*/
+/*    color: black;*/
+/*}*/
+
+/*.justify-center {*/
+/*    justify-content: center;*/
+/*}*/
+
+/*.btn {*/
+/*    font-family: "Roboto";*/
+/*    font-style: normal;*/
+/*    font-weight: 500;*/
+/*    font-size: 13px;*/
+/*    line-height: 13px;*/
+/*    margin: auto;*/
+/*    text-transform: uppercase;*/
+/*    color: #ffffff;*/
+/*    border-radius: 15px;*/
+/*    width: 109px;*/
+/*    height: 28px;*/
+/*    border: none;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*.black {*/
+/*    background-color: black;*/
+/*}*/
+
+/*.green {*/
+/*    background-color: #11B848;*/
+/*}*/
+
+/*.blue {*/
+/*    background-color: #058BCF;*/
+/*}*/
+
+/*.text-center {*/
+/*    text-align: center;*/
+/*}*/
+
+/*.text-left {*/
+/*    text-align: left;*/
+/*}*/
+
+/*.m-auto {*/
+/*    margin: auto;*/
+/*}*/
+
+/*.my-auto {*/
+/*    margin-top: auto;*/
+/*    margin-bottom: auto;*/
+/*}*/
+
+/*.justify-between {*/
+/*    justify-content: space-between;*/
+/*}*/

@@ -1,15 +1,15 @@
 import React from "react";
-import "./Loader.css";
+import styles from "./Loader.module.css";
 
 const Loader = () => {
   return (
-    <div className="bpui-preloader">
-      <div className="bpui-preloader-overlay"></div>
-      <div className="bpui-preloader-spinner">
-        <span>Loading</span>
-        <span>...</span>
+      <div className={styles.bpuiPreloader}>
+          <div className={styles.bpuiPreloaderOverlay}></div>
+          <div className={styles.bpuiPreloaderSpinner}>
+              <span>Loading</span>
+              <span>...</span>
+          </div>
       </div>
-    </div>
   );
 };
 

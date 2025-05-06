@@ -1,14 +1,17 @@
 import React from "react";
-import "./Footer.css";
+import styles from "./Footer.module.css";
 
-const Footer = ({ position }) => {
+const Footer = () => {
 
-  return <div className="footer-container" style={position ? { position } : {}}>
-    <div className="flex column">
-      <span>Privacy | Terms</span>
-      {/* <span>{new Date().getFullYear()} Cloud data. All Rights Reserved.</span> */}
-    </div>
-  </div>
+  return (
+      <div className={styles.footerContainer} >
+        <div className="flex justify-center">
+          <span>Privacy | Terms</span>
+          {/* <span>{new Date().getFullYear()} Cloud data. All Rights Reserved.</span> */}
+        </div>
+      </div>
+      )
+
 
 };
 

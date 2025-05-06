@@ -1,0 +1,35 @@
+:root {
+    /* Font */
+    --font-base: 'Roboto', sans-serif;
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-bold: 700;
+
+    /* Font sizes */
+    --fs-xs: 12px;
+    --fs-sm: 13px;
+    --fs-md: 15px;
+    --fs-lg: 26px;
+    --fs-xl: 30px;
+
+    /* Line heights */
+    --lh-xs: 12px;
+    --lh-sm: 13px;
+    --lh-md: 18px;
+    --lh-lg: 30px;
+    --lh-xl: 44px;
+
+    /* Colors */
+    --color-primary: #00b1eb;
+    --color-black: #000000;
+    --color-white: #ffffff;
+    --color-success: #11B848;
+    --color-info: #058BCF;
+    --color-secondary-text: #999999;
+
+    /* Spacing */
+    --space-xs: 5px;
+    --space-sm: 10px;
+    --space-md: 20px;
+    --space-lg: 30px;
+}

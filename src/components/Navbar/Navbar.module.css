@@ -1,0 +1,162 @@
+.navContainer {
+  position: sticky;
+  top: 0;
+  z-index: 100;       /* make sure it’s above your main content */
+  width: 100%;
+  background-color: white;
+}
+
+.nav {
+  padding: 10px 15%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.navHeader {
+  display: flex;
+  align-items: center;
+}
+
+.navTitle {
+  display: flex;
+  font-size: 22px;
+  padding: 10px;
+}
+
+.logoImg {
+  display: block;
+  margin: auto;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 18px;
+}
+
+.navLink {
+  text-decoration: none;
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: black;
+  padding: 13px 10px;
+}
+
+.navLink:hover {
+  text-decoration: underline;
+}
+
+/*.btn {*/
+/*  padding: 8px 16px;*/
+/*  border: none;*/
+/*  cursor: pointer;*/
+/*  font-size: 14px;*/
+/*  text-transform: uppercase;*/
+/*}*/
+
+.green {
+  background-color: #11b848;
+  color: white;
+}
+
+.black {
+  background-color: black;
+  color: white;
+}
+
+/* Mobile */
+.smNav {
+  display: none;
+}
+
+@media (max-width: 949px) {
+  .nav {
+    display: none;
+  }
+  .smNav {
+    display: block;
+  }
+}
+
+.smHeader {
+  background-color: white;
+  box-shadow: 1px 1px 5px grey;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  height: 70px;
+}
+
+.logoWrapper {
+  display: inline-block;
+}
+
+.logo {
+  height: 30px;
+}
+
+.sideMenu {
+  display: none;
+}
+
+.hamb {
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.hambLine,
+.hambLine::before,
+.hambLine::after {
+  background: #058bcf;
+  content: '';
+  display: block;
+  height: 2px;
+  width: 24px;
+  transition: all 0.2s ease-out;
+}
+
+.hambLine::before {
+  transform: translateY(-5px);
+}
+
+.hambLine::after {
+  transform: translateY(5px);
+}
+
+.sideMenu:checked ~ .smMenu {
+  max-height: 100vh;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.menuItem {
+  margin: 0.5rem 0;
+}
+
+.menuLink {
+  text-decoration: none;
+  color: black;
+  padding: 0.5rem 1rem;
+  display: block;
+}
+
+.menuLink:hover {
+  text-decoration: underline;
+}
+
+.menu .btn {
+  display: block;
+  margin: 0.5rem auto;
+}

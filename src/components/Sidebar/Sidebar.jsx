@@ -1,22 +1,22 @@
 import React from "react";
-import "./Sidebar.css";
+import styles from "./Sidebar.module.css";
 
 const Sidebar = () => {
   return (
-    <nav>
-      <a href="#burger">
+    <nav className={styles.nav}>
+      <a className={styles.a} href="#burger">
         <img src={`/burger-icon.png`} alt="burger" />
       </a>
-      <a href="#cloud">
+      <a className={styles.a} href="#cloud">
         <img src={`/cloud-icon.png`} alt="cloud" />
       </a>
-      <a href="#settings">
+      <a className={styles.a} href="#settings">
         <img
           src={`/settings-icon.png`}
           alt="settings"
         />
       </a>
-      <a href="#chart">
+      <a className={styles.a} href="#chart">
         <img src={`/chart-icon.png`} alt="chart" />
       </a>
     </nav>

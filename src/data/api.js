@@ -1,6 +1,6 @@
 import { plans } from "../data/api-mock";
 
-let sessionId;
+var sessionId;
 
 export const login = async () => {
   try {
@@ -18,6 +18,7 @@ export const login = async () => {
       sessionId = loginResponse[0].SessionID;
     }
   } catch (e) {
+    console.error("An error occurred: ", e);
     return null;
   }
 };
@@ -30,6 +31,7 @@ export const getAccountType = async () => {
     ).then((resp) => resp.json());
     return accountTypeResponse?.queryResponse?.[0]?.Id;
   } catch (e) {
+    console.error("An error occurred: ", e);
     return null;
   }
 };
@@ -51,6 +53,7 @@ export const createAccount = async (name) => {
     }).then((resp) => resp.json());
     return await getAccountByName(name);
   } catch (e) {
+    console.error("An error occurred: ", e);
     return null;
   }
 };
@@ -93,6 +96,7 @@ export const createBillingProfile = async (AccountId, formData) => {
     ).then((resp) => resp.json());
     return savedBP?.queryResponse[0];
   } catch (e) {
+    console.error("An error occurred: ", e);
     return null;
   }
 };
@@ -128,6 +132,7 @@ export const createAccountProduct = async (AccountId, ProductId) => {
     ).then((resp) => resp.json());
     return savedBP?.queryResponse[0].HostedPaymentPageExternalId;
   } catch (e) {
+    console.error("An error occurred: ", e);
     return null;
   }
 };
@@ -143,52 +148,76 @@ export const getAccountByName = async (name) => {
     ).then((resp) => resp.json());
     return accountResponse?.queryResponse?.[0];
   } catch (e) {
+    console.error("An error occurred: ", e);
     return null;
   }
 };
 
-export const getProducts = async () => {
-  try {
-    // if (!sessionId) {
-    //   await login();
-    // }
-    const cachedProducts = localStorage.getItem("products");
-    if (cachedProducts) {
-      return JSON.parse(cachedProducts);
-    }
-    const productResponse = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/query?sql=SELECT Name, Id FROM Product WHERE Name IN ('Cloud Data Standard Trial','Cloud Data Premium Trial')`,
-      { headers: { sessionId } }
-    ).then((resp) => resp.json());
-    const products = productResponse?.queryResponse;
-    const standard = products.find(
-      (item) => item.Name.indexOf("Standard") !== -1
-    );
-    const premium = products.find(
-      (item) => item.Name.indexOf("Premium") !== -1
-    );
-    const parsedPlans = plans.map((item) => {
-      if (item.title === "Standard") {
-        return {
-          ...item,
-          fullTitle: standard?.Name,
-          id: standard?.Id,
-        };
-      } else if (item.title === "Premium") {
-        return {
-          ...item,
-          fullTitle: premium?.Name,
-          id: premium?.Id,
-        };
-      }
-      return item;
-    });
-    localStorage.setItem("products", JSON.stringify(parsedPlans));
-    return parsedPlans;
-  } catch (e) {
-    return null;
-  }
-};
+export async function getProducts() {
+  const res = await fetch('/api/products');
+  if (!res.ok) throw new Error(res.statusText);
+  const products = await res.json();
+
+  const standard = products.find(p => p.Name.includes('Standard'));
+  const premium  = products.find(p => p.Name.includes('Premium'));
+
+  const parsed = plans.map(plan => {
+    if (plan.title === 'Standard') return { ...plan, fullTitle: standard?.Name, id: standard?.Id };
+    if (plan.title === 'Premium')  return { ...plan, fullTitle: premium?.Name,   id: premium?.Id   };
+    return plan;
+  });
+
+  localStorage.setItem('products', JSON.stringify(parsed));
+  return parsed;
+}
+
+// export const getProducts = async () => {
+//   try {
+//     if (!sessionId) {
+//       await login();
+//     }
+//     //debugger;
+//     //const cachedProducts = localStorage.getItem("products");
+//     // if (cachedProducts) {
+//     //   return JSON.parse(cachedProducts);
+//     // }
+//     const productResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}
+//     /query?sql=SELECT * FROM Product WHERE Name IN ('Cloud Data Standard Trial','Cloud Data Premium Trial')`, )
+//         .then((resp) => resp.json());
+//     console.log("RESPONSE:", cachedProducts)
+//     const products = productResponse?.queryResponse;
+//     const standard = products.find(
+//       (item) => item.Name.indexOf("Standard") !== -1
+//     );
+//     const premium = products.find(
+//       (item) => item.Name.indexOf("Premium") !== -1
+//     );
+//
+//     const parsedPlans = plans.map((item) => {
+//       if (item.title === "Standard") {
+//         return {
+//           ...item,
+//           fullTitle: standard?.Name,
+//           id: standard?.Id,
+//         };
+//       } else if (item.title === "Premium") {
+//
+//         return {
+//           ...item,
+//           fullTitle: premium?.Name,
+//           id: premium?.ProductId,
+//         };
+//       }
+//       return item;
+//     });
+//     localStorage.setItem("products", JSON.stringify(parsedPlans));
+//     console.log(parsedPlans);
+//     return parsedPlans;
+//   } catch (e) {
+//     console.error("An error occurred: ", e);
+//     return null;
+//   }
+// };
 
 export const getHppSecurityToken = async (HPP_API_URL) => {
   // const requestUrl = `${HPP_API_URL}/authenticate`;
@@ -210,7 +239,7 @@ export const getHppSecurityToken = async (HPP_API_URL) => {
       return response?.accessToken?.content
     })
     .catch((e) => {
-      console.error(e);
+      console.error("An error occurred: ", e);
     });
 };
 

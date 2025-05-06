@@ -2,7 +2,7 @@
   width: 100%;
 }
 
-.page-content {
+.pageContent {
   margin-top: 50px;
   padding-left: 10px;
   padding-right: 10px;
@@ -10,25 +10,25 @@
   position: absolute;
 }
 
-.plan-description {
+.planDescription {
   width: fit-content;
 }
 
-.form-description {
+.formDescription {
   /* margin-top: 100px; */
   margin-left: 100px;
   margin-right: 50px;
 }
 
-.form-description .flex.column {
+.formDescription .flex.column {
   margin-top: 30px;
 }
 
-.form-description .flex.column > .flex {
+.formDescription .flex.column > .flex {
   margin-top: 10px;
 }
 
-.total-block {
+.totalBlock {
   border-top: 1px solid grey;
   padding-top: 10px;
 }
@@ -44,17 +44,17 @@
   color: #000000;
 }
 
-.billing-form {
+.billingForm {
   margin-bottom: 10px;
 }
 
-.billing-form > .card-container {
+.billingForm > .cardContainer {
   width: 550px;
   min-height: unset;
 }
 
 @media (max-width: 950px) {
-  .billing-form > .card-container {
+  .billingForm > .cardContainer {
     width: auto;
     margin-left: 10px;
     margin-right: 10px;
@@ -63,35 +63,35 @@
 }
 
 @media (max-width: 950px) {
-  .page-content {
+  .pageContent {
     flex-wrap: wrap;
   }
 }
 
-.card-container .input,
-.card-container .select {
+.cardContainer .input,
+.cardContainer .select {
   width: 100%;
 }
 
-.card-container > .divider {
+.cardContainer > .divider {
   margin-top: 10px;
 }
 
-.card-container > .flex.justify-between.w-full,
+.cardContainer > .flex.justify-between.w-full,
 .tab-content > .flex.justify-between.w-full {
   margin-top: 8px;
 }
 
-.card-container > .flex.justify-between.w-full > .input:nth-of-type(1n),
-.card-container > .flex.justify-between.w-full > .select:nth-of-type(1n) {
+.cardContainer > .flex.justify-between.w-full > .input:nth-of-type(1n),
+.cardContainer > .flex.justify-between.w-full > .select:nth-of-type(1n) {
   margin-right: 5px;
 }
 
-.card-container > .flex.justify-between.w-full > .input:nth-of-type(2n) {
+.cardContainer > .flex.justify-between.w-full > .input:nth-of-type(2n) {
   margin-left: 5px;
 }
 
-.card-container .flex.justify-between.w-full span {
+.cardContainer .flex.justify-between.w-full span {
   font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
@@ -139,7 +139,7 @@
   margin: auto;
 }
 
-.businesses .secondary-text {
+.businesses .secondaryText {
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
@@ -149,7 +149,7 @@
   color: #999999;
 }
 
-.register-background {
+.registerBackground {
   background-image: url("/public/register-background.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -162,7 +162,7 @@
   /* z-index: 0; */
 }
 
-.card-container .btn.green {
+.cardContainer .btn.green {
   margin-top: 10px;
 }
 

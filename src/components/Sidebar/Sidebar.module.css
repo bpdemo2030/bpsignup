@@ -3,7 +3,7 @@
   font-family: Montserrat, sans-serif;
 }
 
-nav a {
+.nav .a {
   font-size: 40px;
   color: #fff;
   text-decoration: none;
@@ -12,7 +12,7 @@ nav a {
   text-align: center;
 }
 
-nav {
+.nav {
   position: relative;
   left: 0;
   z-index: 1;
@@ -22,7 +22,7 @@ nav {
   background: #058BCF;
 }
 
-section {
+.section {
   position: absolute;
   top: 0;
   height: 100vh;
@@ -34,14 +34,14 @@ section {
   align-items: center;
 }
 
-section h1 {
+.section .h1 {
   color: #fff;
   font-size: 50px;
   text-transform: uppercase;
   opacity: 0;
 }
 
-section:target {
+.section:target {
   opacity: 1;
   position: absolute;
   left: 0;
@@ -50,7 +50,7 @@ section:target {
   z-index: 10;
 }
 
-section:target h1 {
+.section:target h1 {
   opacity: 0;
   animation: 2s fadeIn forwards 0.5s;
 }

@@ -1,0 +1,10 @@
+.footerContainer {
+  background-color: rgb(255 255 255 / 59%);
+  color: black;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.footerContainer span {
+  font-size: 15px;
+}

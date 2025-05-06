@@ -1,5 +1,5 @@
 import React from "react";
-import "./Tabs.css";
+import "./Tabs.module.css";
 
 const Tabs = (props) => {
 

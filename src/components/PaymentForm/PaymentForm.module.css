@@ -1,4 +1,4 @@
-.form-header {
+.formHeader {
   border-bottom: 1px solid #bbb;
   color: #000;
   font-size: 20px;
@@ -8,13 +8,13 @@
   margin-bottom: 7px;
 }
 
-.billing-contact-form {
+.billingContactForm {
   padding: 10px;
   min-width: 310px;
   max-width: 480px;
 }
 
-.billing-contact-form > .form-fields {
+.billingContactForm > .formFields {
   align-items: center;
   column-gap: 15px;
   display: grid;
@@ -23,25 +23,25 @@
   padding: 10px 20px 30px;
 }
 
-.billing-contact-form > .form-fields > .form-label {
+.billingContactForm > .formFields > .formLabel {
   display: flex;
   grid-column: 1/1;
   justify-self: end;
 }
 
-.billing-contact-form > .form-fields > .form-input {
+.billingContactForm > .formFields > .formInput {
   grid-column: 2/5;
 }
 
-.billing-contact-form > .form-fields > .name-input > input:nth-child(1) {
+.billingContactForm > .formFields > .nameInput > input:nth-child(1) {
   margin-right: 5px;
 }
 
-.billing-contact-form > .form-fields > .name-input > input:nth-child(2) {
+.billingContactForm > .formFields > .nameInput > input:nth-child(2) {
   margin-left: 5px;
 }
 
-.billing-contact-form > .form-fields input {
+.billingContactForm > .formFields input {
   border: 1px solid #d9d9d9;
   box-sizing: border-box;
   color: #000;
@@ -52,11 +52,11 @@
   width: 100%;
 }
 
-.billing-contact-form > .form-fields input:disabled {
+.billingContactForm > .formFields input:disabled {
   cursor: not-allowed;
 }
 
-.form-label {
+.formLabel {
   flex-shrink: 0;
   font-size: 11px;
   font-weight: 500;
@@ -67,7 +67,7 @@
   white-space: nowrap;
 }
 
-.step-btn {
+.stepBtn {
   align-items: center;
   background: #4dbdff;
   border: none;
@@ -80,6 +80,6 @@
   width: 100%;
 }
 
-.step-btn:disabled {
+.stepBtn:disabled {
   cursor: not-allowed;
 }

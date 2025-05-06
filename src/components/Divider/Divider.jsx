@@ -1,5 +1,5 @@
 import React from "react";
-import "./Divider.css";
+import "./Divider.module.css";
 
 const Divider = ({children}) => {
 

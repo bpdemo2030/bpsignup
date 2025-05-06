@@ -1,17 +1,14 @@
-.bpui-preloader {
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
+.bpuiPreloader {
+  z-index: 100;
 }
 
-.bpui-preloader-overlay {
+.bpuiPreloaderOverlay {
+  z-index: 100;
   background: #000;
   opacity: 0;
 }
 
-.bpui-preloader, .bpui-preloader .bpui-preloader-overlay {
+.bpuiPreloader, .bpuiPreloader .bpuiPreloaderOverlay {
   bottom: 0;
   left: 0;
   position: absolute;
@@ -19,7 +16,7 @@
   top: 0;
 }
 
-.bpui-preloader .bpui-preloader-spinner {
+.bpuiPreloader .bpuiPreloaderSpinner {
   background: #fff;
   border: 1px solid #12baff;
   color: #4dbdff;

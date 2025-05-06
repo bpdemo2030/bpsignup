@@ -1,0 +1,123 @@
+.contentCenter {
+    width: 100%;
+    height: 100%;
+}
+
+.header {
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-lg);
+    line-height: var(--lh-lg);
+    text-transform: capitalize;
+    color: var(--color-black);
+}
+
+.secondaryText {
+    margin-top: var(--space-sm);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-md);
+    line-height: var(--lh-md);
+    text-transform: capitalize;
+    color: var(--color-secondary-text);
+}
+
+.plans {
+    display: flex;
+    flex-direction: row;         /* single row */
+    justify-content: center;     /* center them in the container */
+    gap: var(--space-md);        /* uniform space between cards */
+    margin: auto;
+    padding: var(--space-md) 0 var(--space-lg);
+    overflow-x: auto;            /* allow horizontal scroll on narrow viewports */
+    width: 100%;
+}
+
+@media (min-width: 500px) {
+    .plans .cardContainer {
+        margin: 0 var(--space-md);
+    }
+}
+@media (max-width: 500px) {
+    .plans .cardContainer {
+        margin: var(--space-sm);
+        margin-top: var(--space-sm);
+    }
+}
+
+.check {
+    width: 20px;
+    height: 20px;
+}
+
+.description {
+    margin-top: var(--space-xs);
+}
+
+.cardTitle {
+    margin-top: var(--space-sm);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-lg);
+    line-height: var(--lh-lg);
+    text-transform: capitalize;
+    color: var(--color-black);
+}
+
+.cardPrice {
+    margin-top: var(--space-xs);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-xl);
+    line-height: var(--lh-xl);
+    text-align: center;
+    text-transform: capitalize;
+    color: var(--color-black);
+}
+
+.priceDescription {
+    margin-top: var(--space-xs);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-xs);
+    line-height: var(--lh-xs);
+    text-transform: capitalize;
+    color: var(--color-black);
+}
+
+.planLogo {
+    height: 90px;
+    display: flex;
+    justify-content: center;
+}
+.planLogo img {
+    margin: auto;
+}
+
+.description span {
+    margin-left: var(--space-xs);
+}
+
+.tryBtn {
+    margin-top: var(--space-xs);
+}
+
+.cardContainer:nth-of-type(2) {
+    box-shadow: 0px 4px 25px rgba(17, 184, 72, 0.45);
+}
+
+.homeBackground {
+    background: transparent url('/Home-background.png') repeat-x;
+    width: 100%;
+    height: 397px;
+    position: fixed;
+    bottom: 0;
+    z-index: 0;
+}
+
+.planDescription {
+    margin-top: var(--space-md);
+}
+
+.home-cloud-data-icon {
+    background: transparent url("/home-page-cloud-data.png") center no-repeat;
+    width: 100vw;
+    height: 397px;
+    position: fixed;
+    z-index: 0;
+}

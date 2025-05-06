@@ -1,5 +1,5 @@
 import React from "react";
-import "./TopNavigation.css";
+import "./TopNavigation.module.css";
 
 const TopNavigation = (props) => {
   return (

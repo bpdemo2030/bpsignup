@@ -8,7 +8,7 @@ import {
   getHppSecurityToken
 } from "../../data/api";
 import Loader from "../Loader/Loader";
-import "./PaymentForm.css";
+import styles from "./PaymentForm.module.css";
 
 const defaultFormData = {
   firstName: "",
@@ -78,41 +78,36 @@ const PaymentForm = ({ plan, token }) => {
   };
 
   const validateForm = () => {
-    let error;
-    if (step === formSteps.BILLING_CONTACT) {
-      if (!formData.firstName) {
-        error = "First Name is required";
-      } else if (!formData.lastName) {
-        error = "Last Name is required";
-      } else if (!formData.companyName) {
-        error = "Company Name is required";
-      } else if (!formData.email) {
-        error = "Email is required";
-      } else if (!formData.country) {
-        error = "Country is required";
-      } else if (!formData.state) {
-        error = "State is required";
-      } else if (!formData.city) {
-        error = "City is required";
-      } else if (!formData.addr1) {
-        error = "Address is required";
-      } else if (!formData.zip) {
-        error = "Zip is required";
-      }
-    }
-    if (error) {
-      setFormState({
-        status: "error",
-        message: error,
-      });
-      return false;
-    } else {
-      setFormState({
-        status: "",
-        message: "",
-      });
+    if (step !== formSteps.BILLING_CONTACT) {
+      setFormState({ status: "", message: "" });
       return true;
     }
+
+    const requiredFields = [
+      { key: "firstName",   label: "First Name"   },
+      { key: "lastName",    label: "Last Name"    },
+      { key: "companyName", label: "Company Name" },
+      { key: "email",       label: "Email"        },
+      { key: "country",     label: "Country"      },
+      { key: "state",       label: "State"        },
+      { key: "city",        label: "City"         },
+      { key: "addr1",       label: "Address"      },
+      { key: "zip",         label: "Zip"          },
+    ];
+
+    const missing = requiredFields.find(f => !formData[f.key]);
+
+    if (missing) {
+      setFormState({
+        status:  "error",
+        message: `${missing.label} is required`
+      });
+
+      return false;
+    }
+
+    setFormState({ status: "", message: "" });
+    return true;
   };
 
   const onFormSubmit = async () => {
@@ -157,109 +152,124 @@ const PaymentForm = ({ plan, token }) => {
   };
 
   return (
-    <div>
-      {formState.status === "loading" && <Loader />}
-      {step !== formSteps.PAYMENT_DETAILS && (
-        <div className="billing-contact-form">
-          <h2 className="form-header">Your details</h2>
-          <span style={{ color: "red" }}>{formState.message}</span>
-          <div
-            className="form-fields"
-            style={step !== formSteps.BILLING_CONTACT ? { opacity: 0.7 } : {}}
-          >
-            <span className="form-label form-label">Name</span>
-            <div className="flex form-input name-input">
-              <input
-                placeholder="First Name"
-                name="firstName"
-                disabled={step === formSteps.PAYMENT_DETAILS}
-                value={formData.firstName}
-                onChange={onChangeField}
-                onBlur={onFieldBlur}
-              />
-              <input
-                placeholder="Last Name"
-                name="lastName"
-                disabled={step === formSteps.PAYMENT_DETAILS}
-                value={formData.lastName}
-                onChange={onChangeField}
-              />
+      <div>
+        {formState.status === "loading" && <Loader />}
+        {step !== formSteps.PAYMENT_DETAILS && (
+            <div className={styles.billingContactForm}>
+              <h2 className={styles.formHeader}>Your details</h2>
+              <span className={styles.errorMessage}>
+            {formState.message}
+          </span>
+
+              <div
+                  className={
+                    step !== formSteps.BILLING_CONTACT
+                        ? `${styles.formFields} ${styles.disabled}`
+                        : styles.formFields
+                  }
+              >
+                <span className={styles.formLabel}>Name</span>
+                <div className={`${styles.formInput} ${styles.nameInput}`}>
+                  <input
+                      placeholder="First Name"
+                      name="firstName"
+                      disabled={step === formSteps.PAYMENT_DETAILS}
+                      value={formData.firstName}
+                      onChange={onChangeField}
+                      onBlur={onFieldBlur}
+                  />
+                  <input
+                      placeholder="Last Name"
+                      name="lastName"
+                      disabled={step === formSteps.PAYMENT_DETAILS}
+                      value={formData.lastName}
+                      onChange={onChangeField}
+                  />
+                </div>
+
+                <span className={styles.formLabel}>Company name</span>
+                <input
+                    className={styles.formInput}
+                    placeholder="Company Name"
+                    name="companyName"
+                    disabled={step === formSteps.PAYMENT_DETAILS}
+                    value={formData.companyName}
+                    onChange={onChangeField}
+                />
+
+                <span className={styles.formLabel}>Email address</span>
+                <input
+                    className={styles.formInput}
+                    placeholder="Email"
+                    name="email"
+                    disabled={step === formSteps.PAYMENT_DETAILS}
+                    value={formData.email}
+                    onChange={onChangeField}
+                />
+
+                <span className={styles.formLabel}>Country</span>
+                <input
+                    className={styles.formInput}
+                    placeholder="Country"
+                    name="country"
+                    disabled={step === formSteps.PAYMENT_DETAILS}
+                    value={formData.country}
+                    onChange={onChangeField}
+                />
+
+                <span className={styles.formLabel}>State</span>
+                <input
+                    className={styles.formInput}
+                    placeholder="State"
+                    name="state"
+                    disabled={step === formSteps.PAYMENT_DETAILS}
+                    value={formData.state}
+                    onChange={onChangeField}
+                />
+
+                <span className={styles.formLabel}>City</span>
+                <input
+                    className={styles.formInput}
+                    placeholder="City"
+                    name="city"
+                    disabled={step === formSteps.PAYMENT_DETAILS}
+                    value={formData.city}
+                    onChange={onChangeField}
+                />
+
+                <span className={styles.formLabel}>Address</span>
+                <input
+                    className={styles.formInput}
+                    placeholder="Address"
+                    name="addr1"
+                    disabled={step === formSteps.PAYMENT_DETAILS}
+                    value={formData.addr1}
+                    onChange={onChangeField}
+                />
+
+                <span className={styles.formLabel}>Zip</span>
+                <input
+                    className={styles.formInput}
+                    placeholder="Zip"
+                    name="zip"
+                    disabled={step === formSteps.PAYMENT_DETAILS}
+                    value={formData.zip}
+                    onChange={onChangeField}
+                />
+              </div>
+
+              <button
+                  onClick={onFormSubmit}
+                  className={styles.stepBtn}
+                  disabled={step === formSteps.PAYMENT_DETAILS}
+              >
+                Next
+              </button>
             </div>
-            <span className="form-label form-label">Company name</span>
-            <input
-              className="form-input"
-              placeholder="Company Name"
-              name="companyName"
-              disabled={step === formSteps.PAYMENT_DETAILS}
-              value={formData.companyName}
-              onChange={onChangeField}
-            />
-            <span className="form-label form-label">Email address</span>
-            <input
-              className="form-input"
-              placeholder="Email"
-              name="email"
-              disabled={step === formSteps.PAYMENT_DETAILS}
-              value={formData.email}
-              onChange={onChangeField}
-            />
-            <span className="form-label form-label">Country</span>
-            <input
-              className="form-input"
-              placeholder="Country"
-              name="country"
-              disabled={step === formSteps.PAYMENT_DETAILS}
-              value={formData.country}
-              onChange={onChangeField}
-            />
-            <span className="form-label form-label">State</span>
-            <input
-              className="form-input"
-              placeholder="State"
-              name="state"
-              disabled={step === formSteps.PAYMENT_DETAILS}
-              value={formData.state}
-              onChange={onChangeField}
-            />
-            <span className="form-label form-label">City</span>
-            <input
-              className="form-input"
-              placeholder="City"
-              name="city"
-              disabled={step === formSteps.PAYMENT_DETAILS}
-              value={formData.city}
-              onChange={onChangeField}
-            />
-            <span className="form-label form-label">Address</span>
-            <input
-              className="form-input"
-              placeholder="Address"
-              name="addr1"
-              disabled={step === formSteps.PAYMENT_DETAILS}
-              value={formData.addr1}
-              onChange={onChangeField}
-            />
-            <span className="form-label form-label">Zip</span>
-            <input
-              className="form-input"
-              placeholder="Zip"
-              name="zip"
-              disabled={step === formSteps.PAYMENT_DETAILS}
-              value={formData.zip}
-              onChange={onChangeField}
-            />
-          </div>
-          <button
-            onClick={onFormSubmit}
-            className="step-btn"
-            disabled={step === formSteps.PAYMENT_DETAILS}
-          >
-            Next
-          </button>
-        </div>
-      )}
-      <div id="payment-form"></div>
-    </div>
+        )}
+
+        <div id="payment-form" />
+      </div>
   );
 };
 

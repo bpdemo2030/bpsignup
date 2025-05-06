@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Navbar from "../../components/Navbar/Navbar";
+import Navbar from "../../src/components/Navbar/Navbar";
 
 const NotFoundPage = () => {
   
@@ -11,7 +11,7 @@ const NotFoundPage = () => {
         <h1>Not found</h1>
       </div>
       <div>
-        <Link to="/">Home</Link>
+        <Link to="/public">Home</Link>
       </div>
     </div>
   </div>

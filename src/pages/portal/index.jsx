@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import Sidebar from "../../src/components/Sidebar/Sidebar";
-import TopNavigation from "../../src/components/TopNavigation/TopNavigation";
-import "./PortalPage.css";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import TopNavigation from "../../components/TopNavigation/TopNavigation";
+import "./PortalPage.module.css";
 
 const PortalPage = () => {
   return (
@@ -36,7 +36,7 @@ const PortalPage = () => {
               </span>
             </div>
             <div className="flex justify-center w-full">
-              <Link href="/">
+              <Link href="/public">
                 <button className="btn green">Manage Subscription</button>
               </Link>
             </div>
