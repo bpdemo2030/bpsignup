@@ -1,85 +1,79 @@
-.formHeader {
-  border-bottom: 1px solid #bbb;
-  color: #000;
-  font-size: 20px;
+.container {
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: var(--spacing-sm);
+}
+
+/* Renamed header class and consolidated all heading styles (font-size, margin, border) for clear separation of concerns */
+.header {
+  font-size: 1.25rem;
   font-weight: 300;
-  margin: 0;
-  padding-bottom: 7px;
-  margin-bottom: 7px;
+  margin-bottom: var(--spacing-sm);
+  border-bottom: 1px solid #bbb;
+  padding-bottom: var(--spacing-sm);
 }
 
-.billingContactForm {
-  padding: 10px;
-  min-width: 310px;
-  max-width: 480px;
+.error {
+  color: #d32f2f;
+  font-size: 0.875rem;
+  margin-bottom: var(--spacing-sm);
 }
 
-.billingContactForm > .formFields {
-  align-items: center;
-  column-gap: 15px;
-  display: grid;
-  grid-template-columns: 120px calc(45% - 60px) auto calc(35% - 60px);
-  row-gap: 10px;
-  padding: 10px 20px 30px;
-}
-
-.billingContactForm > .formFields > .formLabel {
-  display: flex;
-  grid-column: 1/1;
-  justify-self: end;
-}
-
-.billingContactForm > .formFields > .formInput {
-  grid-column: 2/5;
-}
-
-.billingContactForm > .formFields > .nameInput > input:nth-child(1) {
-  margin-right: 5px;
-}
-
-.billingContactForm > .formFields > .nameInput > input:nth-child(2) {
-  margin-left: 5px;
-}
-
-.billingContactForm > .formFields input {
-  border: 1px solid #d9d9d9;
-  box-sizing: border-box;
-  color: #000;
+.fields {
   display: block;
-  font-size: 14px;
-  height: 34px;
-  padding: 0 5px;
-  width: 100%;
 }
 
-.billingContactForm > .formFields input:disabled {
-  cursor: not-allowed;
-}
-
-.formLabel {
-  flex-shrink: 0;
-  font-size: 11px;
-  font-weight: 500;
-  color: #000;
-  overflow: hidden;
-  text-align: right;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.stepBtn {
+.field {
+  display: flex;
   align-items: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.field label {
+  flex-shrink: 0;
+  width: 7rem;
+  text-align: right;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-right: var(--spacing-sm);
+}
+
+.field input {
+  flex: 1;
+  height: 2.125rem;
+  padding: 0 var(--spacing-sm);
+  font-size: var(--font-base);
+  border: 1px solid #d9d9d9;
+}
+
+.field input:focus {
+  outline: 2px solid #4dbdff;
+}
+
+.inline {
+  /* allow the inline wrapper to grow and share space with label */
+  display: flex;
+  flex: 1;
+  gap: calc(var(--spacing-sm) / 2);
+}.disabled {
+   opacity: 0.6;
+   pointer-events: none;
+ }
+
+.button {
+  width: 100%;
+  padding: 0 var(--spacing-md);
+  height: 2.125rem;
   background: #4dbdff;
+  color: white;
   border: none;
   border-radius: 3px;
+  font-size: var(--font-base);
   cursor: pointer;
-  display: flex;
-  height: 34px;
-  justify-content: center;
-  transition: all 0.2s;
-  width: 100%;
+  transition: background 0.2s;
 }
 
-.stepBtn:disabled {
+.button:disabled {
+  background: #a0dfff;
   cursor: not-allowed;
 }

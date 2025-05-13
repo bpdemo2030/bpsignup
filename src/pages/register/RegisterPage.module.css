@@ -2,22 +2,16 @@
   width: 100%;
 }
 
-.pageContent {
-  margin-top: 50px;
-  padding-left: 10px;
-  padding-right: 10px;
-  z-index: 1;
-  position: absolute;
+.fullWidthPageContent {
+  width: 100%;
+}
+
+.centerContent {;
+  margin: 0 auto;
 }
 
 .planDescription {
   width: fit-content;
-}
-
-.formDescription {
-  /* margin-top: 100px; */
-  margin-left: 100px;
-  margin-right: 50px;
 }
 
 .formDescription .flex.column {

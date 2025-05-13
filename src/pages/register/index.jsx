@@ -38,8 +38,9 @@ const RegisterPage = ({token}) => {
   }, []);
 
   return (
-      <div className={`w-full ${styles.pageContent}`}>
-        <div className="flex justify-between">
+      <div className={`w-full ${styles.fullWidthPageContent}`}>
+        <div className={`flex justify-between ${styles.centerContent}`}
+             style={{ maxWidth: "1200px" }}>
 
           {/* left column */}
           <div className={`w-full ${styles.formDescription}`}>
@@ -47,7 +48,6 @@ const RegisterPage = ({token}) => {
               <h3 className={styles.header}>Shopping cart:</h3>
             </div>
 
-            {/* Plan summary */}
             <div className="flex flex-col space-y-2">
               <div className="flex w-full justify-between">
                 <span>{selectedPlan?.fullTitle || selectedPlan?.title}</span>

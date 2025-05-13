@@ -10,7 +10,7 @@
 
 /* 2. Base font on the root */
 html {
-    font-family: var(--font-base);
+    font-family: var(--font-base), sans-serif;
 }
 
 /* 3. Allow full-height layouts */

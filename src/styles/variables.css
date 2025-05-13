@@ -32,4 +32,7 @@
     --space-sm: 10px;
     --space-md: 20px;
     --space-lg: 30px;
+
+    --spacing-sm: 1rem;
+    --spacing-md: 1rem;
 }
